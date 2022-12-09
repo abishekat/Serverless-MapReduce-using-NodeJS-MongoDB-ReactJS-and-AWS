@@ -7,7 +7,7 @@ Abishek Arumugam Thiruselvi('40218896')
 ```
 # Backend
 
-## please follow the steps for running from [URL] (https://github.com/abishekat/sls-almusiqaa-poc-project/blob/main/backend/README.md)
+## please follow the steps for running from [URL](https://github.com/abishekat/sls-almusiqaa-poc-project/blob/main/backend/README.md)
 
 # Frontend
 
