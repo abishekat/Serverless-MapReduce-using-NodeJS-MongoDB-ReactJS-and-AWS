@@ -1,0 +1,39 @@
+service: poc-assignment-2
+frameworkVersion: "3"
+
+custom:
+  allowedHeaders:
+    - Accept
+    - Content-Type
+    - Content-Length
+    - Authorization
+    - X-Amz-Date
+    - X-Api-Key
+    - X-Amz-Security-Token
+    - X-Amz-User-Agent
+    - app_user_id
+    - app_user_name
+    - Access-Control-Allow-Origin
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  timeout: 60
+  iam:
+    role: arn:aws:iam::252960491156:role/almusiqaa-login-backend
+
+functions:
+  mapReduce:
+    handler: handler.mapReduce
+    layers:
+      - arn:aws:lambda:us-east-1:252960491156:layer:mongodb:2
+    events:
+      - http:
+          path: mapReduce
+          method: post
+          cors:
+            origin: "*"
+            headers: ${self:custom.allowedHeaders}
