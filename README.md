@@ -65,5 +65,5 @@ To set up a development environment, please follow these steps:
 
 ## UNIVERSITY
 ```shell
-    CONCORDIA UNIVERSITY (https://www.concordia.ca/).
+    [CONCORDIA UNIVERSITY](https://www.concordia.ca/).
    ```
