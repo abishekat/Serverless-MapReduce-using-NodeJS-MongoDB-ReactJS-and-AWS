@@ -19,6 +19,24 @@ async function connectToDatabase() {
 module.exports.mapReduce = async (event, context) => {
   const db = await connectToDatabase();
   const file = JSON.parse(event.body);
+  console.log("request :::" + JSON.stringify(file));
+
+  const aggMap = [
+    {
+      $count: "totalMap",
+    },
+  ];
+
+  const maxReduced = [
+    {
+      $sort: {
+        reduced: -1,
+      },
+    },
+    {
+      $limit: 1,
+    },
+  ];
 
   const aggMapReduce = [
     {
@@ -35,12 +53,14 @@ module.exports.mapReduce = async (event, context) => {
         convertedMemoryUtilization_Average: {
           $toDouble: "$MemoryUtilization_Average",
         },
-        convertedFinal_Target: { $toDouble: "$Final_Target" },
+        convertedFinal_Target: {
+          $toDouble: "$Final_Target",
+        },
       },
     },
     {
       $group: {
-        _id: "CPUUtilization_Average",
+        _id: "$CPUUtilization_Average",
         reduced: {
           $sum: 1,
         },
@@ -66,6 +86,11 @@ module.exports.mapReduce = async (event, context) => {
       await db.listCollections().toArray()
     ).findIndex((item) => item.name === "SlicedData")) !== -1;
 
+  const reducedExists =
+    (await (
+      await db.listCollections().toArray()
+    ).findIndex((item) => item.name === "reduced")) !== -1;
+
   const startLimit = batchId * batchUnit;
   const endLimit = startLimit + batchSize * batchUnit;
   const resultData = allItems.slice(startLimit, endLimit);
@@ -79,13 +104,45 @@ module.exports.mapReduce = async (event, context) => {
     .collection("SlicedData")
     .aggregate(aggMapReduce)
     .toArray();
+  if (reducedExists) {
+    await db.collection("reduced").drop();
+  }
+  await db.collection("reduced").insertMany(reducedResult);
+  const mappedResult = await db
+    .collection("reduced")
+    .aggregate(aggMap)
+    .toArray();
+
+  const maxReducedFromArray = await db
+    .collection("reduced")
+    .aggregate(maxReduced)
+    .toArray();
 
   context.callbackWaitsForEmptyEventLoop = false;
+  const resp = {
+    statusCode: 200,
+    body: {
+      reduced: reducedResult,
+      mapped: JSON.stringify(mappedResult[0].totalMap),
+    },
+  };
 
   const response = {
     statusCode: 200,
-    body: JSON.stringify(reducedResult),
+    body: [
+      {
+        maxReduced: JSON.stringify(maxReducedFromArray[0].reduced),
+        mapped: JSON.stringify(mappedResult[0].totalMap),
+      },
+    ],
   };
 
-  return response;
+  console.log("resp :::" + JSON.stringify(resp));
+  console.log("response :::" + JSON.stringify(response));
+
+  const output = {
+    statusCode: 200,
+    body: "MapReduce Sucessfull",
+  };
+  return output;
 };
