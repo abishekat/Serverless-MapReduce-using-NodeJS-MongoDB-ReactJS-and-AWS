@@ -69,7 +69,7 @@ const mapReduce = async (client) => {
     },
   ];
 
-  const batchUnit = 10;
+  const batchUnit = 500;
   const batchSize = 1;
   const batchId = 1;
   const max = [
@@ -94,7 +94,7 @@ const mapReduce = async (client) => {
     },
     {
       $match: {
-        CPUUtilization_Average: "62",
+        CPUUtilization_Average: "58",
       },
     },
     {
@@ -128,7 +128,7 @@ const mapReduce = async (client) => {
     },
     {
       $match: {
-        CPUUtilization_Average: "62",
+        CPUUtilization_Average: "58",
       },
     },
     {
@@ -162,7 +162,7 @@ const mapReduce = async (client) => {
     },
     {
       $match: {
-        CPUUtilization_Average: "62",
+        CPUUtilization_Average: "58",
       },
     },
     {
@@ -231,18 +231,9 @@ const mapReduce = async (client) => {
     ],
   };
 
-  const maximum = await db
-    .collection("NDBench_Testing")
-    .aggregate(max)
-    .toArray();
-  const minimum = await db
-    .collection("NDBench_Testing")
-    .aggregate(min)
-    .toArray();
-  const avg = await db
-    .collection("NDBench_Testing")
-    .aggregate(average)
-    .toArray();
+  const maximum = await db.collection("SlicedData").aggregate(max).toArray();
+  const minimum = await db.collection("SlicedData").aggregate(min).toArray();
+  const avg = await db.collection("SlicedData").aggregate(average).toArray();
   console.log("resp :::" + JSON.stringify(resp));
   console.log("response :::" + JSON.stringify(response));
   console.log("maximum ::: " + JSON.stringify(maximum));
