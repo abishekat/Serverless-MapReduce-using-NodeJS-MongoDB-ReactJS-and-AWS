@@ -1,0 +1,21 @@
+timestamp,message
+1670734957534,"START RequestId: 481fe083-1fd7-4f30-9e34-bac96bd76a12 Version: $LATEST
+"
+1670734957708,"2022-12-11T05:02:37.708Z	481fe083-1fd7-4f30-9e34-bac96bd76a12	INFO	request :::{""requestParams"":{""batchUnit"":""100"",""batchSize"":""1"",""batchId"":""1""}}
+"
+1670734957709,"2022-12-11T05:02:37.708Z	481fe083-1fd7-4f30-9e34-bac96bd76a12	INFO	100:::1:::1
+"
+1670734958539,"2022-12-11T05:02:38.539Z	481fe083-1fd7-4f30-9e34-bac96bd76a12	INFO	maximum ::: [{""_id"":""62"",""NetworkOut_Average"":436622213}]
+"
+1670734958539,"2022-12-11T05:02:38.539Z	481fe083-1fd7-4f30-9e34-bac96bd76a12	INFO	minimum ::: [{""_id"":""62"",""NetworkOut_Average"":71014708}]
+"
+1670734958539,"2022-12-11T05:02:38.539Z	481fe083-1fd7-4f30-9e34-bac96bd76a12	INFO	average ::: [{""_id"":""62"",""NetworkOut_Average"":278417411.27745664}]
+"
+1670734958540,"2022-12-11T05:02:38.540Z	481fe083-1fd7-4f30-9e34-bac96bd76a12	INFO	resp :::{""statusCode"":200,""body"":{""reduced"":[{""_id"":""33"",""reduced"":1,""total"":176153300},{""_id"":""35"",""reduced"":1,""total"":168029393},{""_id"":""72"",""reduced"":3,""total"":1188431383},{""_id"":""40"",""reduced"":1,""total"":198604299},{""_id"":""76"",""reduced"":2,""total"":742653610},{""_id"":""28"",""reduced"":3,""total"":411020054},{""_id"":""54"",""reduced"":4,""total"":768516890},{""_id"":""75"",""reduced"":3,""total"":1327756164},{""_id"":""34"",""reduced"":3,""total"":499553124},{""_id"":""80"",""reduced"":1,""total"":357258930},{""_id"":""29"",""reduced"":2,""total"":313713454},{""_id"":""69"",""reduced"":2,""total"":715032260},{""_id"":""44"",""reduced"":2,""total"":472892655},{""_id"":""52"",""reduced"":3,""total"":835138280},{""_id"":""53"",""reduced"":4,""total"":820465990},{""_id"":""38"",""reduced"":3,""total"":660430906},{""_id"":""45"",""reduced"":2,""total"":359815644},{""_id"":""39"",""reduced"":1,""total"":180108945},{""_id"":""59"",""reduced"":5,""total"":1322948722},{""_id"":""60"",""reduced"":1,""total"":170143724},{""_id"":""36"",""reduced"":1,""total"":197702852},{""_id"":""46"",""reduced"":1,""total"":300478661},{""_id"":""48"",""reduced"":2,""total"":463741741},{""_id"":""70"",""reduced"":3,""total"":1162547105},{""_id"":""37"",""reduced"":1,""total"":158382569},{""_id"":""56"",""reduced"":4,""total"":1001239361},{""_id"":""42"",""reduced"":2,""total"":340441259},{""_id"":""41"",""reduced"":4,""total"":915331696},{""_id"":""43"",""reduced"":3,""total"":556228448},{""_id"":""81"",""reduced"":2,""total"":741615386},{""_id"":""50"",""reduced"":3,""total"":590619414},{""_id"":""49"",""reduced"":1,""total"":185137672},{""_id"":""58"",""reduced"":1,""total"":213228856},{""_id"":""57"",""reduced"":4,""total"":961505957},{""_id"":""27"",""reduced"":1,""total"":109634626},{""_id"":""55"",""reduced"":2,""total"":562104447},{""_id"":""30"",""reduced"":3,""total"":494319296},{""_id"":""77"",""reduced"":1,""total"":345405456},{""_id"":""73"",""reduced"":1,""total"":344331053},{""_id"":""66"",""reduced"":1,""total"":360301945},{""_id"":""74"",""reduced"":1,""total"":345836393},{""_id"":""31"",""reduced"":4,""total"":581231341},{""_id"":""67"",""reduced"":2,""total"":695736131},{""_id"":""62"",""reduced"":2,""total"":580972589},{""_id"":""26"",""reduced"":1,""total"":127423713},{""_id"":""79"",""reduced"":1,""total"":362987774},{""_id"":""51"",""reduced"":1,""total"":282873001}],""mapped"":""47""}}
+"
+1670734958540,"2022-12-11T05:02:38.540Z	481fe083-1fd7-4f30-9e34-bac96bd76a12	INFO	response :::{""statusCode"":200,""body"":[{""maxReduced"":""5"",""mapped"":""47""}]}
+"
+1670734958541,"END RequestId: 481fe083-1fd7-4f30-9e34-bac96bd76a12
+"
+1670734958541,"REPORT RequestId: 481fe083-1fd7-4f30-9e34-bac96bd76a12	Duration: 1007.67 ms	Billed Duration: 1008 ms	Memory Size: 1024 MB	Max Memory Used: 106 MB	Init Duration: 371.51 ms	
+"
