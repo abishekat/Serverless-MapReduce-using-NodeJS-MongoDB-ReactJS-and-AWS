@@ -72,7 +72,108 @@ const mapReduce = async (client) => {
   const batchUnit = 10;
   const batchSize = 1;
   const batchId = 1;
-
+  const max = [
+    {
+      $addFields: {
+        convertedCPUUtilization_Average: {
+          $toInt: "$CPUUtilization_Average",
+        },
+        convertedNetworkIn_Average: {
+          $toInt: "$NetworkIn_Average",
+        },
+        convertedNetworkOut_Average: {
+          $toInt: "$NetworkOut_Average",
+        },
+        convertedMemoryUtilization_Average: {
+          $toDouble: "$MemoryUtilization_Average",
+        },
+        convertedFinal_Target: {
+          $toDouble: "$Final_Target",
+        },
+      },
+    },
+    {
+      $match: {
+        CPUUtilization_Average: "62",
+      },
+    },
+    {
+      $group: {
+        _id: "$CPUUtilization_Average",
+        NetworkOut_Average: {
+          $max: "$convertedNetworkOut_Average",
+        },
+      },
+    },
+  ];
+  const min = [
+    {
+      $addFields: {
+        convertedCPUUtilization_Average: {
+          $toInt: "$CPUUtilization_Average",
+        },
+        convertedNetworkIn_Average: {
+          $toInt: "$NetworkIn_Average",
+        },
+        convertedNetworkOut_Average: {
+          $toInt: "$NetworkOut_Average",
+        },
+        convertedMemoryUtilization_Average: {
+          $toDouble: "$MemoryUtilization_Average",
+        },
+        convertedFinal_Target: {
+          $toDouble: "$Final_Target",
+        },
+      },
+    },
+    {
+      $match: {
+        CPUUtilization_Average: "62",
+      },
+    },
+    {
+      $group: {
+        _id: "$CPUUtilization_Average",
+        NetworkOut_Average: {
+          $min: "$convertedNetworkOut_Average",
+        },
+      },
+    },
+  ];
+  const average = [
+    {
+      $addFields: {
+        convertedCPUUtilization_Average: {
+          $toInt: "$CPUUtilization_Average",
+        },
+        convertedNetworkIn_Average: {
+          $toInt: "$NetworkIn_Average",
+        },
+        convertedNetworkOut_Average: {
+          $toInt: "$NetworkOut_Average",
+        },
+        convertedMemoryUtilization_Average: {
+          $toDouble: "$MemoryUtilization_Average",
+        },
+        convertedFinal_Target: {
+          $toDouble: "$Final_Target",
+        },
+      },
+    },
+    {
+      $match: {
+        CPUUtilization_Average: "62",
+      },
+    },
+    {
+      $group: {
+        _id: "$CPUUtilization_Average",
+        NetworkOut_Average: {
+          $avg: "$convertedNetworkOut_Average",
+        },
+      },
+    },
+  ];
   console.log(batchUnit + ":::" + batchSize + ":::" + batchId);
   const allItems = await db.collection("NDBench_Testing").find().toArray();
   const exists =
@@ -130,8 +231,23 @@ const mapReduce = async (client) => {
     ],
   };
 
+  const maximum = await db
+    .collection("NDBench_Testing")
+    .aggregate(max)
+    .toArray();
+  const minimum = await db
+    .collection("NDBench_Testing")
+    .aggregate(min)
+    .toArray();
+  const avg = await db
+    .collection("NDBench_Testing")
+    .aggregate(average)
+    .toArray();
   console.log("resp :::" + JSON.stringify(resp));
   console.log("response :::" + JSON.stringify(response));
+  console.log("maximum ::: " + JSON.stringify(maximum));
+  console.log("minimum ::: " + JSON.stringify(minimum));
+  console.log("average ::: " + JSON.stringify(avg));
 
   const output = {
     statusCode: 200,
