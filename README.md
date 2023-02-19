@@ -1,4 +1,4 @@
-# POC-ASSIGNMENT-2
+# Serverless MapReduce using NodeJS, MongoDB, ReactJS and AWS
 
 ```bash
 
